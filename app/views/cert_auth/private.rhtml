@@ -1,0 +1,7 @@
+<% content_for 'title' do %>
+  Welcome <%= session[:name] %>
+<% end %>
+
+<div class="related">
+	<p>You have authenticated as <%= session[:name] %> with DNI <%= session[:dni] %></p>
+</div>

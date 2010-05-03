@@ -1,0 +1,7 @@
+This is an example Rails app that illustrates how third party applications can integrate with Tractis API.
+
+To run it using ruby just go to base dir and execute 
+./script/server
+
+To build a war file you must have jruby (http://www.jruby.org/download) and warbler (http://kenai.com/projects/warbler/pages/Home) installed and run 
+jruby -S warble war

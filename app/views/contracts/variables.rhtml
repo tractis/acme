@@ -1,0 +1,9 @@
+<% if @variables %>
+  <%= build_form_from_variables_hash(@variables, 'contract[auto_complete]') %>
+<% else %>
+  <p>This template doesn't have variables</p>
+<% end %>  
+<%= update_page_tag do |page|
+  page.visual_effect :highlight, 'variables'
+  page << remote_function(:url => live_xml_contracts_path, :update => 'live-XML', :method => :get, :submit => 'new_contract')
+end %>

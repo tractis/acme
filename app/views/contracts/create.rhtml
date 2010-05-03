@@ -1,0 +1,12 @@
+<div id="ladoform">
+  <div id="formsB">
+    <% unless @errors.blank? %>
+      <% @errors.each do |error| %>
+        <p><strong><%= error %></strong></p>
+      <% end %>
+    <% else %>
+      <p><strong>Contracts were successfully created</strong></p>
+      <p><%= link_to "Send more contracts", new_contract_path %></p>
+    <% end %>
+  </div>
+</div>

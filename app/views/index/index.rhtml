@@ -1,0 +1,27 @@
+<div id="formsB">
+  <h4>Contracts Demo</h4>
+  <div style="float: left; width: 35%">
+    <div class="buttonlogin"><%= link_to "Contract creation", contracts_path %></div>
+  </div>
+
+  <div class="moduloA" style="float: right; width: 60%;">
+    <p>This scenario tests remote contract creation using tractis remote API.</p>
+    <p>Here you can create contracts using out test account or signin using yours to test many contract creation features including templates and contract variables.</p>
+  </div>
+
+  <div class="clear"></div>
+
+  <h4>Authentication Demo</h4>
+
+  <div style="float: left; width: 35%">
+    <div class="buttonlogin"><%= link_to "Authentication gateway", cert_auth_login_path %></div>
+  </div>
+
+  <div class="moduloA" style="float: right; width: 60%;">
+    <p>Synchronous authentication: The user is requested sign in with certificates using the Tractis Authentication gateway.</p>
+    <p>Authentication process can be performed using digital certificates issued by:</p>
+    <%= render :partial => 'cert_auth/certs' %>
+  </div>
+
+</div>
+

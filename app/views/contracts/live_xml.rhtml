@@ -1,0 +1,12 @@
+<% if @errors.blank? %>
+  <pre>
+    <% params[:contracts].each do |contract| %>
+<%=h contract.to_xml_req('contract') %>
+      <br/>
+    <% end %>
+  </pre>
+<% else %>
+  <% @errors.each do |error| %>
+    <p><strong><%= error %></strong></p>
+  <% end %>
+<% end %>

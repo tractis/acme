@@ -1,0 +1,77 @@
+<% content_for 'title' do %>
+  DEMO: Sending a Customized Contract to Several Clients
+<% end %>
+<div id="ladoform">
+  <div id="formsB">
+    <% form_tag contracts_path, :id => 'new_contract' do %>
+      <p>For this demo you need to select a base template for your customized contract. You can use the templates in our demo account or <%= link_to 'sign in with your tractis ID', login_contracts_path %> to use the templates in your private library.</p>
+      <p>You are currently using tractis ID: <strong><%= @user %></strong>
+        <% if logged_in? %>
+          (<%= link_to 'use our demo account', login_contracts_path(:clear => 'true') %>)
+        <% end %>
+      </p>
+      <h4>1. Email address and message</h4>
+      <p>Add up to 5 email addresses to send this contract to.</p>
+      
+			<div class="moduloE">
+			  <% for i in 1..5 do %>
+			    <label>Email <%= i %> <input type="text" name="email[]" value=""></label>
+			  <% end %>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="moduloB" style="display:none;" id="invitation">
+				<label>Subject <%= text_field 'invitation', 'subject' , :class => "w80" %></label>
+        		<label>Body <%= text_area 'invitation', 'body' %></label>
+			</div>
+			
+			<p><%= link_to_function 'Add an email subject and message', "$('invitation').visualEffect($('invitation').visible() ? 'blind_up' : 'blind_down');" %> (optional)</p>
+			
+      <h4>2. Basic contract information</h4>
+
+      <div class="moduloB">
+        <label>Title <%= text_field 'contract', 'name', :class => "w80" %></label>
+        <label>Instructions <%= text_area 'contract', 'notes' %></label>
+        <% ask_for_variables = remote_function(:url => variables_contracts_path,
+                      :with => "Form.Element.serialize($('contract_template'))",
+                      :method => :get, :update => 'variables') %>
+        <label>Select a template
+          <p><%= select("contract", "template",
+                      @templates.collect {|p| [ p.name, p[:id] ] }, {},
+                      :onchange => ask_for_variables) %></p>
+        </label>
+        <%= javascript_tag(ask_for_variables) %>
+      </div>
+
+      <h4>3. Template variables</h4>
+      <div class="moduloB">
+        <div id="variables"></div>
+      </div>
+      
+      <% if false and logged_in? %>
+      <h4>4. Do you want to sign this contract?</h4>
+      
+			<p>
+			 <label><%= check_box 'contract', 'creator_is_signer' %> I want to be able to sign the contract</label>
+			</p>
+      <% end %>
+			
+      <p><%= submit_tag 'Send customized contract' %></p>
+    <% end %>
+  </div>
+</div>
+
+<div id="ladopreview">
+	<h4>This is the XML you will send to Tractis</h4>
+	<div id="live-XML"></div>
+</div>  
+<%=  periodically_call_remote :update => 'new_contract',
+                              :url => live_xml_contracts_path,
+                              :update => 'live-XML',
+                              :method => :get,
+                              :submit => 'new_contract',
+                              :frequency => 12 %>
+<% content_for 'class' do %>
+  class="all"
+<% end %>

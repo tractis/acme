@@ -1,0 +1,16 @@
+<div id="formsB">
+  <h4>Sign in</h4>
+  <div style="float: left; width: 35%">
+    <% form_tag NEXEDEN_URL+"/verifications" do %>
+    <%= hidden_field_tag 'api_key', NEXEDEN_KEY %>
+    <%= hidden_field_tag 'notification_callback', cert_auth_gateway_url %>
+    <%= hidden_field_tag 'transaction_id', "login" %>
+    <div class="buttonlogin"><%= submit_tag "Sign in into ACME!" , :class => "loginacme" %></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="moduloA" style="float: right; width: 60%;">
+  <p>Welcome to Acme Inc. Intranet service. In order to operate, you will be redirected to the authentication gateway. We accept this certicates:</p>
+  <%= render :partial => 'cert_auth/certs' %>
+</div>

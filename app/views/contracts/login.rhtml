@@ -1,0 +1,41 @@
+<% content_for 'title' do %>
+Login
+<% end %>  
+<div id="formsB">
+  <h4>Enter your Tractis ID</h4>
+
+  <div style="float: left; width: 35%">
+    <% form_tag do %>
+    <div class="moduloB" style="margin-bottom: 50px;">
+
+      <label>Email
+        <input id="login" name="login" style="width: 250px" type="text" value="<%= session[:login] %>"/>
+      </label>
+      <label>Password
+        <input id="password" name="password" type="password" value="<%= session[:password] %>" />
+      </label>
+      <p>
+        <input name="commit" type="submit" value="Sign in" />
+      </p>
+      <p><a href="https://www.tractis.com/forgot_password">Forgot your password?</a></p>
+      <p><%= link_to 'Use our demo account', login_contracts_path(:clear => 'true') %></p>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="moduloA" style="float: right; width: 60%;">
+    <h2>What is Tractis?</h2>
+    <p>Tractis is a secure web platform that allows companies and individuals to:</p>
+
+    <ul class="uls">
+      <li>Create, sign and manage contracts 100% online.</li>
+      <li>Share contract templates and offer your services in a secure enviroment.</li>
+      <li>Integrate, offer and accept electronic ID fast and easy in your website.</li>
+    </ul>			
+    <p><strong><a href="https://www.tractis.com/signup">Sign Up</a></strong> now to join the tractis community.</p>
+
+  </div>
+
+</div>
+
+
