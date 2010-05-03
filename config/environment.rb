@@ -83,24 +83,12 @@ class String
   end
 end
 
-if ENV['RAILS_ENV'] == 'production'
   API = {
     :url => 'https://www.tractis.com',
-    :user => 'acme@tractis.com',
-    :password => 'negoacme07'
+    :user => 'PUT YOUR USER HERE',
+    :password => 'PUT YOUR PASS HERE'
   }
   Tractis.config(API[:user], API[:password], API[:url])
   Nexeden.config('https://id.tractis.com')
   NEXEDEN_KEY = "9ca86cec7129ee9fdfadd156788f941189c579f9"
   NEXEDEN_URL = 'https://www.tractis.com'
-else
-  API = {
-    :url => 'https://trunk.tractis.com',
-    :user => 'erjica+demo@gmail.com',
-    :password => '12344321'
-  }
-  Tractis.config(API[:user], API[:password], API[:url])
-  Nexeden.config('http://trunk.tractis.com:8010')
-  NEXEDEN_KEY = "11a5fdc55948db01de48cbcbeeba06fcb5bfb1e3"
-  NEXEDEN_URL = 'http://trunk.tractis.com:8010'
-end
